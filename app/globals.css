@@ -207,5 +207,25 @@
 .background-game-purple {
   background-color: var(--color-game-purple);
 }
+.text-game-dark{
+  color: var(--color-game-dark)
+}
+.font-comic {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+.font-bangers {
+  font-family: 'Vibrant', 'Monoton', cursive;
+}
+.text-game-purple{
+  color: var(--color-game-purple);
+}
+.bg-game-yellow{
+  background-color: var(--color-game-yellow);
+}
+.text-game-orange{
+  background-color: var(--color-game-orange);
+}
 
 

@@ -6,6 +6,7 @@ import { fetchWords, getDifficultyLevel } from '@/utils/wordUtils';
 import { generateWordSearchGrid, getHint } from '@/utils/wordSearchUtils';
 import WordSearchGrid from '@/components/WordSearchGrid';
 import { toast } from "sonner"
+import WordList from '@/components/WordList';
 
 const page = () => {
   const [gameState, setGameState] = useState<GameState | null>(null);
@@ -161,6 +162,9 @@ const page = () => {
       <main className="flex-1 flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
         <div className="lg:w-2/3">
          <WordSearchGrid gameState={gameState} onWordFound={handleWordFound} hintPositions={hintPositions}/>
+        </div>
+        <div className="lg:w-1/3 flex flex-col gap-4">
+         <WordList words={gameState.words} />
         </div>
       </main>
     </div>

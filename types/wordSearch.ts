@@ -5,13 +5,17 @@ export type Position = {
   col: number;
 };
 
+
 export type WordPlacement = {
   word: string;
   positions: Position[];
   direction: WordDirection;
   found: boolean;
-  color?: string; 
-  category?: string; 
+  color?: string;
+  category?: string;
+  clue?: string;
+  summary?: string;
+  hint?: string;
 };
 
 export type GameState = {
