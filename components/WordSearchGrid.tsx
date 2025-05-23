@@ -205,6 +205,14 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({
     window.addEventListener("mouseup", handleMouseUpOutside);
     return () => window.removeEventListener("mouseup", handleMouseUpOutside);
   }, [selecting]);
+  const hexToRgba = (hex: string, alpha: number): string => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
+  
 
   return (
     <div 
@@ -250,7 +258,7 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({
                   isHint ? "bg-yellow-200" : ""
                 }`}
                 style={{
-                  backgroundColor: foundWord ? foundWord.color : '',
+                  backgroundColor: foundWord ? hexToRgba(foundWord.color as string, 0.4) : '',
                   color: foundWord ? 'white' : '',
                 }}
                 onMouseDown={() => handleMouseDown(rowIndex, colIndex)}

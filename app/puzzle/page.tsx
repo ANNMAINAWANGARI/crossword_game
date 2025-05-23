@@ -19,7 +19,7 @@ const page = () => {
     try{
       setGameState(prev => prev ? { ...prev, loading: true } : null);
       const difficultyLevel = getDifficultyLevel(level);
-      const { words: selectedWords, categories: wordCategories, data } = await fetchWords( difficultyLevel.wordCount);
+      const { words: selectedWords, categories: wordCategories, data } = await fetchWords( difficultyLevel.wordCount,difficultyLevel.gridSize);
       setWordData(data);
       const summaries: Record<string, string> = {};
       data.forEach(item => {

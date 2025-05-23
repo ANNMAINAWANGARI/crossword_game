@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 interface RequestBody {
   levelCount: number;
+  gridSize:number;
 }
 
 export interface Keyword {
@@ -11,10 +12,10 @@ export interface Keyword {
 }
 
 export async function POST(request:Request) {
-  const {levelCount } :RequestBody  = await request.json();
+  const {levelCount,gridSize } :RequestBody  = await request.json();
 
   const prompt = `
-    Using real, up-to-date news from today, generate a list of ${levelCount} important single-word keywords. The keywords should have 5 or more letters.
+    Using real, up-to-date news from today, generate a list of ${levelCount} important single-word keywords that do not exceed ${gridSize} letters. The keywords should have 5 or more letters.
 
     Each keyword should be a product, technology, or trending topic that appeared in today's news.
 

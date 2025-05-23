@@ -12,11 +12,12 @@ export function getDifficultyLevel(level: number): Difficulty {
   const clampedLevel = Math.max(level, 1);
   const gridSize = baseGridSize + Math.floor((clampedLevel - 1) / 2);
   const wordCount = baseWordCount + clampedLevel * 2;
+  console.log(gridSize,wordCount,'yayyyyyyyyyyyyyyyyyy')
 
   return { gridSize, wordCount };
 }
 
-export const fetchWords = async(wordCount:number): Promise<{
+export const fetchWords = async(wordCount:number,gridSize:number): Promise<{
   words: string[];
   data: Keyword[];
   categories: Record<string, string>;
@@ -24,7 +25,7 @@ export const fetchWords = async(wordCount:number): Promise<{
   const wordData = await fetch('/api/keywords', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ levelCount:wordCount }),
+  body: JSON.stringify({ levelCount:wordCount,gridSize }),
   });
   const data = await wordData.json();
   const words = data.keywords.map((item: Keyword) => item.word);
