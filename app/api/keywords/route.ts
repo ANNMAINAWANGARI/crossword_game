@@ -1,0 +1,96 @@
+import { NextResponse } from 'next/server';
+interface RequestBody {
+  levelCount: number;
+}
+
+export interface Keyword {
+  word: string;
+  clue: string;
+  summary: string;
+  category: string;
+}
+
+export async function POST(request:Request) {
+  const {levelCount } :RequestBody  = await request.json();
+
+  const prompt = `
+    Using real, up-to-date news from today, generate a list of ${levelCount} important single-word keywords. The keywords should have 5 or more letters.
+
+    Each keyword should be a product, technology, or trending topic that appeared in today's news.
+
+    For each keyword, provide the following:
+    Keyword - A single word (minimum 5 letters) that is relevant and appeared in the news.
+    Clue - A concise, dictionary-style definition or explanation of the word in one sentence.
+    Short News Summary - A brief (1-2 sentence) summary describing how or why this word was relevant in today's news.
+    Category - Label the word with an appropriate category such as technological, political, economic, scientific, environmental, cultural, or health-related.
+
+
+    Return ONLY an array of objects, each with:
+    - "word": a single word (no phrases or product names).
+    - "clue": a precise, brief explanation or definition.
+    - "summary": brief summary of how relevant in today's news.
+    - "category": category of the news.
+
+    Do not add any other text before or after the array. Return only the array.
+
+    Example output:
+    [
+      { "word": "algorithm", "clue": "Process or set of rules followed in calculations.","summary":"A Microsoft employee was terminated by an automated algorithm, highlighting concerns over AI-driven HR decisions.","category":"technological" },
+      {
+        "word": "pride",
+        "clue": "In this context, refers to the Orlando Pride, a professional women's soccer team based in Orlando, Florida.",
+        "summary": "The Orlando Pride announced the return of their matches to the FanDuel Sports Network, enhancing accessibility for fans.",
+        "category": "sports"
+       },
+       {
+        "word": "darts",
+        "clue": "A competitive sport where players throw small missiles at a circular target fixed to a wall.",
+        "summary": "The 2025 Premier League Darts tournament is ongoing, featuring top players competing across various venues, with the finals scheduled for later this month.",
+        "category": "sports"
+        },
+        {
+         "word": "ceasefire",
+         "clue": "A temporary suspension of fighting; a truce.",
+         "summary": "India and Pakistan agreed to a ceasefire on May 10, 2025, following escalated tensions earlier in the month, aiming to de-escalate the conflict.",
+         "category": "political"
+        },
+        {
+         "word": "congress",
+         "clue": "The national legislative body of a country, particularly the United States Congress, comprising the Senate and the House of Representatives.",
+         "summary": "A U.S. federal judge ruled that President Trump's administration cannot restructure federal agencies without congressional approval, emphasizing the separation of powers.",
+         "category": "political"
+        }
+    ]
+  `;
+  
+  
+  const res = await fetch('https://api.perplexity.ai/chat/completions', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.PERPLEXITY_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'sonar',
+      messages: [
+        { role: 'system', content: 'You are an assistant that returns only well-formatted array of objects. Each element in the array must be an object with four fields: "word" (a single-word keyword), "clue" (a concise, dictionary-style definition), "summary" (a short news summary explaining the word’s relevance today), and "category" (such as technological, political, entertainment, sports, health-related, etc.). Do not include any explanations, headers, or extra text—just the array output.' },
+        { role: 'user', content: prompt },
+      ]
+    }),
+  });
+
+  const data = await res.json();
+  console.log('output data',data)
+
+  // Parse and return the JSON array from the model's response
+  let keywords: Keyword[] | string = [];
+  try {
+    keywords = JSON.parse(data.choices?.[0]?.message?.content);
+  } catch (e) {
+    console.log('error is',e)
+    // fallback: return the raw text if parsing fails
+    keywords = data.choices?.[0]?.message?.content;
+  }
+
+  return NextResponse.json({ keywords });
+}
