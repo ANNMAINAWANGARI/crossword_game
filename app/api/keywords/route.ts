@@ -22,44 +22,40 @@ export async function POST(request:Request) {
     For each keyword, provide the following:
     Keyword - A single word (minimum 5 letters) that is relevant and appeared in the news.
     Clue - A concise, dictionary-style definition or explanation of the word in one sentence.
-    Short News Summary - A brief (1-2 sentence) summary describing how or why this word was relevant in today's news.
+    Short News Summary - A brief (1-2 sentence) summary describing how or why this word was relevant in today's news. 
+    ***Do not include the keyword itself in the summary.*** Instead, use synonyms, related phrases, or indirect references.
     Category - Label the word with an appropriate category such as technological, political, economic, scientific, environmental, cultural, or health-related.
-
 
     Return ONLY an array of objects, each with:
     - "word": a single word (no phrases or product names).
     - "clue": a precise, brief explanation or definition.
-    - "summary": brief summary of how relevant in today's news.
+    - "summary": brief summary of how relevant in today's news, without using the word itself.
     - "category": category of the news.
 
     Do not add any other text before or after the array. Return only the array.
 
     Example output:
     [
-      { "word": "algorithm", "clue": "Process or set of rules followed in calculations.","summary":"A Microsoft employee was terminated by an automated algorithm, highlighting concerns over AI-driven HR decisions.","category":"technological" },
+      { "word": "algorithm", "clue": "Process or set of rules followed in calculations.","summary":"An automated decision-making tool at a major tech company led to unexpected employee terminations, sparking discussions on AI ethics.","category":"technological" },
       {
         "word": "pride",
         "clue": "In this context, refers to the Orlando Pride, a professional women's soccer team based in Orlando, Florida.",
-        "summary": "The Orlando Pride announced the return of their matches to the FanDuel Sports Network, enhancing accessibility for fans.",
-        "category": "sports"
+        "summary": "A prominent women's team announced renewed broadcasting deals to improve viewer access.","category":"sports"
        },
        {
         "word": "darts",
         "clue": "A competitive sport where players throw small missiles at a circular target fixed to a wall.",
-        "summary": "The 2025 Premier League Darts tournament is ongoing, featuring top players competing across various venues, with the finals scheduled for later this month.",
-        "category": "sports"
+        "summary": "A popular European league continues its tournament tour, drawing record attendance at recent matches.","category":"sports"
         },
         {
          "word": "ceasefire",
          "clue": "A temporary suspension of fighting; a truce.",
-         "summary": "India and Pakistan agreed to a ceasefire on May 10, 2025, following escalated tensions earlier in the month, aiming to de-escalate the conflict.",
-         "category": "political"
+         "summary": "Leaders in two neighboring countries reached an agreement to pause hostilities after diplomatic mediation.","category":"political"
         },
         {
          "word": "congress",
          "clue": "The national legislative body of a country, particularly the United States Congress, comprising the Senate and the House of Representatives.",
-         "summary": "A U.S. federal judge ruled that President Trump's administration cannot restructure federal agencies without congressional approval, emphasizing the separation of powers.",
-         "category": "political"
+         "summary": "A federal ruling emphasized the limits of executive authority in reshaping administrative structures.","category":"political"
         }
     ]
   `;

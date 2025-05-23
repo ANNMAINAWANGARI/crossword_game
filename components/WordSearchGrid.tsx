@@ -252,8 +252,8 @@ const WordSearchGrid: React.FC<WordSearchGridProps> = ({
                 key={`${rowIndex}-${colIndex}`}
                 data-row={rowIndex}
                 data-col={colIndex}
-                className={`w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center text-xl font-bold cursor-pointer select-none transition-all duration-300 border border-purple-200 bg-white rounded-md shadow-sm ${
-                  isSelected ? "background-game-purple text-white transform scale-105" : "bg-green-600"
+                className={`w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center text-xl font-bold cursor-pointer select-none transition-all duration-300 border border-purple-200 bg-white rounded-md shadow-sm font-comic ${
+                  isSelected ? "background-game-purple text-white transform scale-105" : ""
                 } ${
                   isHint ? "bg-yellow-200" : ""
                 }`}

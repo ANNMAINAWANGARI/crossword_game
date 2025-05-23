@@ -7,6 +7,8 @@ import { generateWordSearchGrid, getHint } from '@/utils/wordSearchUtils';
 import WordSearchGrid from '@/components/WordSearchGrid';
 import { toast } from "sonner"
 import WordList from '@/components/WordList';
+import GameControls from '@/components/GameControls';
+import NewsTicker from '@/components/NewsTicker';
 
 const page = () => {
   const [gameState, setGameState] = useState<GameState | null>(null);
@@ -97,7 +99,18 @@ const page = () => {
       if (allFound) {
         setTimeout(() => {
           setShowConfetti(true);
-          toast(`Breaking News! 🎉 You've uncovered all news stories! Ready for level ${Math.min(currentLevel + 1, 5)}?`);
+          // Check if we can advance to the next level
+          const nextLevel = currentLevel + 1;
+          const canAdvance = true;
+          if(canAdvance){
+            toast(`Level ${currentLevel} complete! Advancing to Level ${nextLevel}...`);
+            setTimeout(()=>{
+              setCurrentLevel(nextLevel);
+              initGame(nextLevel);
+            },2000)
+          }else{
+            toast(`Breaking News! 🎉 You've uncovered all news stories! Ready for level ${Math.min(currentLevel + 1, 5)}?`);
+          }
         }, 500);
       } else {
         // Regular word found toast
@@ -126,10 +139,10 @@ const page = () => {
       setHintPositions(prev => [...prev, hint.position]);
       
       // Use custom hint if available from word data
-      // const wordObj = gameState.words.find(w => w.word === hint.word);
-      // const customHint = wordObj?.clue;
+       const wordObj = gameState.words.find(w => w.word === hint.word);
+       const customHint = wordObj?.clue;
       
-      toast( `Our sources suggest looking around "${hint.letter}" for the word "${hint.word.substring(0, 2)}..."`);
+      toast( customHint || `Our sources suggest looking around "${hint.letter}" for the word "${hint.word.substring(0, 2)}..."`);
       
       // Clear hint after a few seconds
       setTimeout(() => {
@@ -159,12 +172,25 @@ const page = () => {
   }
   return (
     <div className="min-h-screen flex flex-col p-4 md:p-8 bg-gradient-to-b from-blue-500 to-gray-100">
+      <header className="text-center mb-4">
+        <NewsTicker news={wordData.map(w => w.word)} summaries={wordSummaries} />
+      </header>
       <main className="flex-1 flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
         <div className="lg:w-2/3">
          <WordSearchGrid gameState={gameState} onWordFound={handleWordFound} hintPositions={hintPositions}/>
         </div>
         <div className="lg:w-1/3 flex flex-col gap-4">
+         <div className="bg-game-purple text-white px-4 py-2 rounded-lg font-bangers text-xl shadow-lg">
+            Level {currentLevel}
+          </div>
          <WordList words={gameState.words} />
+         <div className="mt-4">
+          <GameControls onNewGame={() => initGame(currentLevel)}
+              onGetHint={handleGetHint}
+              hintsUsed={hintsUsed}
+              totalWords={gameState.words.length}
+              wordsFound={gameState.words.filter(w => w.found).length}/>
+         </div>
         </div>
       </main>
     </div>

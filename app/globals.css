@@ -224,8 +224,17 @@
 .bg-game-yellow{
   background-color: var(--color-game-yellow);
 }
-.text-game-orange{
+.bg-game-orange{
   background-color: var(--color-game-orange);
+}
+.text-game-orange{
+  color: var(--color-game-orange);
+}
+.bg-game-purple{
+  background-color: var(--color-game-purple);
+}
+.border-game-orange{
+  border-color: var(--color-game-orange);
 }
 
 
