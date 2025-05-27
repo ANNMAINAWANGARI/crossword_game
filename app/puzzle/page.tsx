@@ -9,6 +9,7 @@ import { toast } from "sonner"
 import WordList from '@/components/WordList';
 import GameControls from '@/components/GameControls';
 import NewsTicker from '@/components/NewsTicker';
+import Confetti from '@/components/Confetti';
 
 const page = () => {
   const [gameState, setGameState] = useState<GameState | null>(null);
@@ -172,6 +173,7 @@ const page = () => {
   }
   return (
     <div className="min-h-screen flex flex-col p-4 md:p-8 bg-gradient-to-b from-blue-500 to-gray-100">
+      {showConfetti && <Confetti />}
       <header className="text-center mb-4">
         <NewsTicker news={wordData.map(w => w.word)} summaries={wordSummaries} />
       </header>
