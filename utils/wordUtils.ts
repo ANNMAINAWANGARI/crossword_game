@@ -12,8 +12,6 @@ export function getDifficultyLevel(level: number): Difficulty {
   const clampedLevel = Math.max(level, 1);
   const gridSize = baseGridSize + Math.floor((clampedLevel - 1) / 2);
   const wordCount = baseWordCount + clampedLevel * 2;
-  console.log(gridSize,wordCount,'yayyyyyyyyyyyyyyyyyy')
-
   return { gridSize, wordCount };
 }
 

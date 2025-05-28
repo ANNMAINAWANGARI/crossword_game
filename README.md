@@ -1,4 +1,44 @@
-## CLUETHETIMES
+# 🧩 CLUETHETIMES
+
+---
+## 🗞️ What is ClueTheTimes?
+
+ClueTheTimes is a web-based word search game that generates puzzles from **real-time news stories**, using the **Perplexity Sonar API** to:
+
+- Extract trending keywords
+- Generate puzzle-style clues
+- Provide short news summaries
+- Categorize each word (e.g., political, tech, economic)
+
+Each time you play, you get a fresh, relevant, and educational word search puzzle based on what’s happening in the world — right now.
+
+---
+
+## 🧠 How It Works
+
+1. I call the **Perplexity Sonar API** to retrieve trending news topics.
+2. Sonar returns:
+   - A list of **keywords** (used as the hidden words in the puzzle)
+   - A **clue** for each word (displayed as a hint)
+   - A short **explanation** of the news context
+   - A **category** (e.g., *political*, *economic*, etc.)
+3. The game dynamically:
+   - Builds a playable word search grid with the keywords
+   - Links each word to its clue and explanation
+   - Allows players to filter by topic or difficulty
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:** React.js  
+**Backend/API:** Next.js 15 API Routes  
+**AI Integration:** Perplexity Sonar API (prompt-engineered for structured JSON responses)  
+**Styling:** Tailwind CSS  
+
+---  
+
+[![Watch the demo]](https://youtu.be/H7YjYEl9VVE)
 
 ### HomePage
 ![HomePage](/public/Homepage.png)
@@ -8,7 +48,7 @@
 
 ## Tech Stack/ Tooling
 - Frontend : Next.js 15
-- SONAR API
+- SONAR MODEL
 
 
 ## Project Scripts

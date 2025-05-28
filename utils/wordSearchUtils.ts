@@ -1,168 +1,9 @@
 import { GameState, Position, WordDirection, WordPlacement } from "@/types/wordSearch";
 
-// export const generateWordSearchGrid = (
-//   words: string[],
-//   size: number,
-//   allowBackwards: boolean
-// ): GameState => {
-//   // Initialize an empty grid
-//   const grid: string[][] = Array(size)
-//     .fill(null)
-//     .map(() => Array(size).fill(""));
-
-//   const placedWords: WordPlacement[] = [];
-  
-//   // Used to track occupied positions to avoid placing words too close together
-//   const occupiedPositions: Set<string> = new Set();
-  
-//   // Min distance between words (in grid cells) - increase this to make words more spread out
-//   const minDistance = Math.min(1, Math.floor(size / 10));
-
-//   // Shuffle words to randomize placement attempts
-//   const shuffledWords = [...words].sort(() => Math.random() - 0.5);
-
-//   // Try to place each word
-//   for (const word of shuffledWords) {
-//     // Skip if word is longer than grid size
-//     if (word.length > size) continue;
-
-//     let placed = false;
-//     let attempts = 0;
-//     const maxAttempts = 200; // Increase max attempts to find better positions
-
-//     while (!placed && attempts < maxAttempts) {
-//       attempts++;
-
-//       // Pick a random direction
-//       const directions: WordDirection[] = [
-//         "horizontal",
-//         "vertical",
-//         "diagonal-down",
-//         "diagonal-up"
-//       ];
-//       const direction = directions[Math.floor(Math.random() * directions.length)];
-
-//       // Calculate maximum starting position based on direction and word length
-//       let maxRow = size - 1;
-//       let maxCol = size - 1;
-
-//       if (direction === "vertical" || direction === "diagonal-down") {
-//         maxRow = size - word.length;
-//       }
-//       if (direction === "horizontal" || direction === "diagonal-down" || direction === "diagonal-up") {
-//         maxCol = size - word.length;
-//       }
-//       if (direction === "diagonal-up") {
-//         maxRow = size - 1;
-//         // We need to place the word starting from the bottom to go up diagonally
-//         // So the minimum row is the word length - 1
-//         const minRow = word.length - 1;
-//         // Pick a random row between minRow and maxRow
-//         const startRow = minRow + Math.floor(Math.random() * (maxRow - minRow + 1));
-//         const startCol = Math.floor(Math.random() * (maxCol + 1));
-
-//         // Try to place the word
-//         if (canPlaceWord(grid, word, startRow, startCol, direction, occupiedPositions, minDistance)) {
-//           const positions = placeWord(grid, word, startRow, startCol, direction);
-          
-//           // Add positions to occupied set
-//           positions.forEach(pos => {
-//             occupiedPositions.add(`${pos.row},${pos.col}`);
-            
-//             // Add surrounding positions within minDistance as "occupied" to space out words
-//             for (let r = -minDistance; r <= minDistance; r++) {
-//               for (let c = -minDistance; c <= minDistance; c++) {
-//                 if (r === 0 && c === 0) continue; // Skip the actual word position
-//                 const nearbyRow = pos.row + r;
-//                 const nearbyCol = pos.col + c;
-//                 if (nearbyRow >= 0 && nearbyRow < size && nearbyCol >= 0 && nearbyCol < size) {
-//                   // Don't add as occupied if it's actually part of the word
-//                   if (!positions.some(p => p.row === nearbyRow && p.col === nearbyCol)) {
-//                     occupiedPositions.add(`${nearbyRow},${nearbyCol}`);
-//                   }
-//                 }
-//               }
-//             }
-//           });
-          
-//           placedWords.push({
-//             word,
-//             positions,
-//             direction,
-//             found: false
-//           });
-//           placed = true;
-//         }
-//       } else {
-//         // For other directions
-//         const startRow = Math.floor(Math.random() * (maxRow + 1));
-//         const startCol = Math.floor(Math.random() * (maxCol + 1));
-
-//         // Randomly decide to place word backwards (if allowed)
-//         const backwards = allowBackwards && Math.random() > 0.5;
-        
-//         // Try to place the word
-//         if (canPlaceWord(grid, backwards ? reverseString(word) : word, startRow, startCol, direction, occupiedPositions, minDistance)) {
-//           const positions = placeWord(grid, backwards ? reverseString(word) : word, startRow, startCol, direction);
-          
-//           // Add positions to occupied set
-//           positions.forEach(pos => {
-//             occupiedPositions.add(`${pos.row},${pos.col}`);
-            
-//             // Add surrounding positions within minDistance as "occupied" to space out words
-//             for (let r = -minDistance; r <= minDistance; r++) {
-//               for (let c = -minDistance; c <= minDistance; c++) {
-//                 if (r === 0 && c === 0) continue; // Skip the actual word position
-//                 const nearbyRow = pos.row + r;
-//                 const nearbyCol = pos.col + c;
-//                 if (nearbyRow >= 0 && nearbyRow < size && nearbyCol >= 0 && nearbyCol < size) {
-//                   // Don't add as occupied if it's actually part of the word
-//                   if (!positions.some(p => p.row === nearbyRow && p.col === nearbyCol)) {
-//                     occupiedPositions.add(`${nearbyRow},${nearbyCol}`);
-//                   }
-//                 }
-//               }
-//             }
-//           });
-          
-//           placedWords.push({
-//             word,
-//             positions,
-//             direction,
-//             found: false
-//           });
-//           placed = true;
-//         }
-//       }
-//     }
-//   }
-
-//   // Fill the remaining empty cells with random letters
-//   fillEmptyCells(grid);
-
-//   return {
-//     grid,
-//     words: placedWords,
-//     size,
-//     startPosition: null,
-//     currentPosition: null,
-//     selectedPositions: [],
-//     loading: false
-//   };
-// };
-
 // Helper to reverse a string
 const reverseString = (str: string): string => {
   return str.split('').reverse().join('');
 };
-
-
-
-
-
-
-
-
 
 function isPlacementTooCloseForHV(
   wordToPlace: string,
@@ -221,10 +62,6 @@ function isPlacementTooCloseForHV(
   }
   return false; // No forbidden H/V adjacencies found
 }
-
-
-
-
 
 export const generateWordSearchGrid = (
   words: string[],
@@ -369,35 +206,6 @@ export const generateWordSearchGrid = (
     loading: false,
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Check if a word can be placed at a given position and direction
