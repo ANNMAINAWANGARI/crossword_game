@@ -38,7 +38,7 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 
 ---  
 
-[![Watch the demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/H7YjYEl9VVE)
+[![Watch the demo](https://img.youtube.com/vi/H7YjYEl9VVE/hqdefault.jpg)](https://youtu.be/H7YjYEl9VVE)
 
 ### HomePage
 ![HomePage](/public/Homepage.png)
