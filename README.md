@@ -16,7 +16,7 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 
 ## 🧠 How It Works
 
-1. I call the **Perplexity Sonar API** to retrieve trending news topics.
+1. User calls the **Perplexity Sonar API** to retrieve trending news topics.
 2. Sonar returns:
    - A list of **keywords** (used as the hidden words in the puzzle)
    - A **clue** for each word (displayed as a hint)
@@ -25,7 +25,7 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 3. The game dynamically:
    - Builds a playable word search grid with the keywords
    - Links each word to its clue and explanation
-   - Allows players to filter by topic or difficulty
+   - Difficulty levels increase after every win
 
 ---
 
@@ -38,7 +38,7 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 
 ---  
 
-[![Watch the demo]](https://youtu.be/H7YjYEl9VVE)
+[![Watch the demo](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://youtu.be/H7YjYEl9VVE)
 
 ### HomePage
 ![HomePage](/public/Homepage.png)
