@@ -37,6 +37,7 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 **Styling:** Tailwind CSS  
 
 ---  
+### Video Demo
 
 [![Watch the demo](https://img.youtube.com/vi/H7YjYEl9VVE/hqdefault.jpg)](https://youtu.be/H7YjYEl9VVE)
 
