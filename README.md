@@ -1,14 +1,13 @@
 # 🧩 CLUETHETIMES
 
----
 ## 🗞️ What is ClueTheTimes?
 
-ClueTheTimes is a web-based word search game that generates puzzles from **real-time news stories**, using the **Perplexity Sonar API** to:
+ClueTheTimes is more than a game — it's a real-time knowledge system that turns global news into structured, playable intelligence. Built on top of the Sonar API, it showcases how language models can:
 
-- Extract trending keywords
-- Generate puzzle-style clues
-- Provide short news summaries
-- Categorize each word (e.g., political, tech, economic)
+- Parse and extract **contextual meaning** from live news content
+- Generate **concise, semantically accurate clues**
+- Categorize information across domains like politics, economics, and technology
+- Automatically convert unstructured knowledge into a structured, human-friendly experience  
 
 Each time you play, you get a fresh, relevant, and educational word search puzzle based on what’s happening in the world — right now.
 
@@ -37,9 +36,40 @@ Each time you play, you get a fresh, relevant, and educational word search puzzl
 **Styling:** Tailwind CSS  
 
 ---  
+
+## 📝 TODO / Feature Roadmap
+
+Here are some upcoming features and directions I'm exploring for ClueTheTimes:
+
+### 🎮 Gameplay Features
+- [ ] **Multiplayer Mode**: Real-time or turn-based play with friends or global opponents
+- [ ] **Timed Challenges**: Solve puzzles against the clock for extra points or streaks
+- [ ] **Scheduled Puzzles**: Schedule games in a calendar and send invites to the participants
+
+### 🏫 Educational Mode
+- [ ] **Classroom/Thesis Competitions**: Let teachers or researchers create puzzle sets tied to a curriculum, research theme, or news analysis
+- [ ] **Student Leaderboards**: Track performance across institutions or groups
+- [ ] **Safe/Filtered Content Mode**: Ensure age-appropriate, educational-friendly news topics
+
+### 🧠 AI + UX Enhancements
+- [ ] **Keyword Difficulty Scoring**: Auto-label easy/medium/hard clues based on abstraction
+- [ ] **Topic Filters**: Let players pick puzzles by category (e.g. politics, tech, health)
+- [ ] **Multilingual Support**: Localize puzzles and clues in multiple languages
+
+### 🌐 Community & Sharing
+- [ ] **Puzzle Sharing**: Generate links to share and challenge others
+- [ ] **User-Curated Topics**: Let users request puzzles based on specific topics or people
+- [ ] **Analytics Dashboard**: Track puzzle difficulty, solve rates, and clue effectiveness
+
+### ⚙️ Developer + API Features
+- [ ] **Strict Schema Parsing**: Enforce clean JSON from Sonar with schema fallback logic
+- [ ] **Offline Mode**: Cache recent puzzles for offline play
+- [ ] **Accessibility Improvements**: High-contrast mode, screen reader compatibility
+
+---
 ### Video Demo
 
-[![Watch the demo](https://img.youtube.com/vi/H7YjYEl9VVE/hqdefault.jpg)](https://youtu.be/H7YjYEl9VVE)
+[![Watch the demo below](https://img.youtube.com/vi/H7YjYEl9VVE/hqdefault.jpg)](https://youtu.be/H7YjYEl9VVE)
 
 ### HomePage
 ![HomePage](/public/Homepage.png)
